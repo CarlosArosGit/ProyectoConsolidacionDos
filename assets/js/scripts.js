@@ -59,17 +59,11 @@ $(document).ready(function () {
     });
     $("#close1").click(function () {
         modal.style.display = "none";
-        body.style.position = "inherit";
-        body.style.height = "auto";
-        body.style.overflow = "visible";
         $('#nameD').val('');
     });
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
-            body.style.position = "inherit";
-            body.style.height = "auto";
-            body.style.overflow = "visible";
         }
     }
 
