@@ -1,31 +1,40 @@
 $(document).ready(function () {
     var subirBtn = document.getElementById("subirBtn");
     $('#parrafoMasInfo').hide();
-    var contenido = document.querySelector('#contenido');
     fetch('https://digimon-api.vercel.app/api/digimon')
         .then(response => response.json())
         .then(datos => {
             console.log(datos)
-            tabla(datos)
+            cards(datos)
 
         })
-
-    function tabla(datos) {
-        contenido.innerHTML = '';
-
-        for (let temp of datos) {
-            contenido.innerHTML +=
-                `  <tr>
-                <td><p id="nombreDDD">${temp.name}</p></td>
-                <td><img src="${temp.img}" alt="" id="imgD" height="65px" width="65px"></td>
-              </tr>
-            `;
-
-
+    function cards(datos) {
+        var row = document.getElementById('digimonInfo');
+        for (var i=0; i< datos.length; i++) {
+            var section = document.createElement('div');
+            var card = document.createElement('div');
+            var img = document.createElement('img');
+            var titulo = document.createElement('h3');
+            var nivel = document.createElement('p');
+            
+            section.classList.add('col-lg-3');
+            card.classList.add('text-center');
+            card.classList.add('align-items-center');
+            img.src = datos[i].img;
+            img.classList.add('imgCard');
+            titulo.classList.add('colorWhite');
+            nivel.classList.add('colorWhite');
+            nivel.classList.add('mbtm');
+            titulo.innerHTML = datos[i].name;
+            nivel.innerHTML = 'Nivel: '+datos[i].level;
+            card.appendChild(img);
+            card.appendChild(titulo);
+            card.appendChild(nivel);
+            section.appendChild(card);
+            row.appendChild(section);
         }
         subirBtn.style.display = "block";
     }
-
     var modal = document.getElementById("myModal");
     $("#btnB").click(function () {
 
